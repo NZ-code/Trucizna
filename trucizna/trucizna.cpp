@@ -2,7 +2,7 @@
 #define MAX_CARDS 174
 using namespace std;
 
-enum colors_t {
+enum  colors_t {
     green,
     blue,
     red,
@@ -72,6 +72,15 @@ void add_gcards(cards_t *main_deck, unsigned int g, unsigned int gv) {
         main_deck->length++;
     }
 }
+void add_cards(cards_t* main_deck, unsigned int len, unsigned int value, colors_t color) {
+    // create and add green cards to a main deck
+    for (int i = 0; i < int(len); i++) // amount of green cards
+    {
+        card_t green_card = { color, value }; 
+        main_deck->deck[i] = green_card;
+        main_deck->length++;
+    }
+}
 int main()
 {
    /* "Trucizna game!\n";
@@ -88,11 +97,10 @@ int main()
     //check if values in rigth range
 
     //creating main deck
-    unsigned int length =  g + k*o;
-    
+    unsigned int amount_of_cars =  g + k*o;
     cards_t main_deck;
-
-    add_gcards(&main_deck, g, gv);
+    // adding green cards
+    add_cards(&main_deck, g, gv,green);
     show_deck(main_deck);
 
     //adding other cards in main_deck
