@@ -81,6 +81,7 @@ void add_cards(cards_t* main_deck, unsigned int len, unsigned int value, colors_
         main_deck->length++;
     }
 }
+
 int main()
 {
    /* "Trucizna game!\n";
@@ -92,9 +93,12 @@ int main()
 
     
     unsigned int k, g, gv, o; // nums of...cauldrons |green card| value of green card| other color card(not green)
-    cin >> k >> g >> gv >> o;
-    //TO_DO 
-    //check if values in rigth range
+    do {
+        cin >> k >> g >> gv >> o;
+        if (1 <= k && k <= 6 && 1 <= g && g <= 9 && 1 <= gv && gv <= 10 && 1 <= o && o <= 20) break;
+    } while (true);
+
+    
 
     //creating main deck
     unsigned int amount_of_cars =  g + k*o;
@@ -103,20 +107,21 @@ int main()
     add_cards(&main_deck, g, gv,green);
 
     //adding other cards in main_deck
-    for (int i = 0; i < o; i++) // nums of no-green cards
+    for (int j = 0; j < int(k); j++) //iterate by colors(int)
+    
     {   
         unsigned int card_value;
         cin >> card_value;
-        for (int j = 0; j < k; j++) //iterate by colors(int)
+        for (int i = 0; i < int(o); i++) // nums of no-green cards
         {
             
             add_cards(&main_deck, 1, card_value, colors_t(j+1));
             
         }
     }
-    //sorting main_deck
-
     
+    
+
     show_deck(main_deck);
     
     
