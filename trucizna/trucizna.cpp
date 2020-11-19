@@ -1,5 +1,5 @@
 ﻿#include <iostream>
-
+#define MAX_CARDS 174
 using namespace std;
 
 enum colors_t {
@@ -20,15 +20,58 @@ struct card_t {
 struct  cards_t
 {   
     int length = 0;
-    card_t deck[];
+    card_t deck[MAX_CARDS]{};
 };
 struct  cauldron
 {
     colors_t cauldron_color;
     cards_t cauldron_deck;
 };
-
-
+void show_card(card_t card) {
+    cout << card.card_value<<" ";
+    switch (card.card_color) {
+    case green:
+        cout << "green";
+        break;
+    case blue:
+        cout << "blue";
+        break;
+    case red:
+        cout << "red";
+        break;
+    case violet:
+        cout << "violet";
+        break;
+    case yellow:
+        cout << "yellow";
+        break;
+    case white:
+        cout << "white";
+        break;
+    case black:
+        cout << "black";
+        break;
+    default:
+        cout << "Something erong with color!!!";
+        break;
+    }
+    cout << " ";
+}
+void show_deck(cards_t deck) {
+    for (int i = 0; i < deck.length; i++)
+    {
+        show_card(deck.deck[i]);
+    }
+}
+void add_gcards(cards_t *main_deck, unsigned int g, unsigned int gv) {
+    // create and add green cards to a main deck
+    for (int i = 0; i < int(g); i++) // amount of green cards
+    {
+        card_t green_card = { green, gv }; //gv - green card value
+        main_deck->deck[i] = green_card;
+        main_deck->length++;
+    }
+}
 int main()
 {
    /* "Trucizna game!\n";
@@ -46,16 +89,13 @@ int main()
 
     //creating main deck
     unsigned int length =  g + k*o;
+    
     cards_t main_deck;
-    main_deck.length = length;
-    main_deck.deck[length];
-    // make and add green cards to a main deck
-    for (int i = 0; i < g; i++)
-    {
-        card_t green_card = { green, gv };
-        main_deck.deck[i] = green_card;
-        main_deck.length++;
-    }
 
+    add_gcards(&main_deck, g, gv);
+    show_deck(main_deck);
+
+    //adding other cards in main_deck
+    
 }
 
