@@ -3,7 +3,7 @@
 
 #define MAX_OTHER 20
 #define MIN_OTHER 1
-#define MAX_G_VAL 20
+#define MAX_G_VAL 10
 #define MIN_G_VAL 1
 #define MAX_GREEN 9
 #define MIN_GREEN 1
