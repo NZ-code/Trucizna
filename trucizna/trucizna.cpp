@@ -74,10 +74,10 @@ void add_gcards(cards_t *main_deck, unsigned int g, unsigned int gv) {
 }
 void add_cards(cards_t* main_deck, unsigned int len, unsigned int value, colors_t color) {
     // create and add green cards to a main deck
-    for (int i = 0; i < int(len); i++) // amount of green cards
+    for (int i =0; i < int(len); i++) // amount of green cards
     {
-        card_t green_card = { color, value }; 
-        main_deck->deck[i] = green_card;
+        card_t card = { color, value }; 
+        main_deck->deck[main_deck->length] = card;
         main_deck->length++;
     }
 }
@@ -101,9 +101,24 @@ int main()
     cards_t main_deck;
     // adding green cards
     add_cards(&main_deck, g, gv,green);
-    show_deck(main_deck);
 
     //adding other cards in main_deck
+    for (int i = 0; i < o; i++) // nums of no-green cards
+    {   
+        unsigned int card_value;
+        cin >> card_value;
+        for (int j = 0; j < k; j++) //iterate by colors(int)
+        {
+            
+            add_cards(&main_deck, 1, card_value, colors_t(j+1));
+            
+        }
+    }
+    //sorting main_deck
+
+    
+    show_deck(main_deck);
+    
     
 }
 
