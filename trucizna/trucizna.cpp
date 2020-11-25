@@ -17,54 +17,73 @@
 using namespace std;
 
 
+int is_green(char *napis) {
 
+}
 
 int main()
 {   
     int nums_players;
-    scanf("active player = 1\nplayers number = %d\n", &nums_players);
-    
-    int hand_cards[MAX_PLAYERS] = {};
-    int deck_cards[MAX_PLAYERS] = {};
-
-    
-    
-    for (int i = 0; i < nums_players; i++)
-    {
+    if (scanf("active player = 1\nplayers number = %d\n", &nums_players)) {
+        int hand_cards[MAX_PLAYERS] = {};
+        int deck_cards[MAX_PLAYERS] = {};
+        int cauldrons[MAX_CAULDRONS] = {};
         int id;
-        int num;
-        char word[12];
-        scanf("%d player hand cards:", &id);
-        int hand_cnt = 0;
-        int deck_cnt = 0;
-        char c;
-        c = getchar();
-        while (c != '\n' && scanf("%d %s", &num, word) == 2) {
-            hand_cnt++;
-            c = getchar();
-            
+        for (int i = 0; i < nums_players; i++)
+        {
+            if (scanf("%d player hand cards:", &id)) {
+                char c = getchar();
+                while (c != '\n' && c != EOF) {
+                    char tmp = c;
+                    c = getchar();
+                    if (isdigit(c) && !isdigit(tmp)) {
+                        hand_cards[i] += 1;
+                    }
+                }
+            }
+            if (scanf("%d player deck cards:", &id)) {
+                char c = getchar();
+                while (c != '\n' && c != EOF) {
+                    char tmp = c;
+                    c = getchar();
+                    if (isdigit(c) && !isdigit(tmp)) {
+                        deck_cards[i] += 1;
+                    }
+                }
+            }
         }
-        hand_cards[i] = hand_cnt;
-        
-       
-        scanf("%d player deck cards:", &id);
-        
-        c = getchar();
-        while (c!='\n' && scanf("%d %s", &num, word) == 2) {
-            deck_cnt++;
-            c = getchar();
+        int id_p;
+        int cauldrons_cnt=0;
+
+        for (int i = 0; scanf("%d  pile cards:", &id_p) != 0; i++) {
+            cauldrons_cnt++;
+            char c = getchar();
+            while (c != '\n') {
+                char tmp = c;
+                c = getchar();
+                if (isdigit(c) && !isdigit(tmp)) {
+                    cauldrons[i] += 1;
+                }
+                if (c == EOF) break;
+            }
+            if (c == EOF) break;
         }
-        deck_cards[i] = deck_cnt;
+
+
+
+        for (int i = 0; i < nums_players; i++)
+        {
+            printf("%d player has %d cards on hand\n", i + 1, hand_cards[i]);
+            printf("%d player has %d cards in front of him\n", i + 1, deck_cards[i]);
+           
+        }
+        for (int i = 0; i < cauldrons_cnt; i++)
+        {
+            printf("there are %d cards on %d pile\n",cauldrons[i],i+1);
+        }
+        
     }
-    for (int i = 0; i < nums_players; i++)
-    {
-        printf("%d player has %d cards on hand\n", i+1, hand_cards[i]);
-        printf("%d player has %d cards in front of him\n", i+1, deck_cards[i]);
-    }
+    
+    
+        
 }
-/*
-active player = 1
-players number = 3
-1 player hand cards: 4 green 4 green 4 green 1 blue 2 blue 4 blue 5 blue 7 blue 1 red 2 red 5 red 7 red 1 violet 2 violet 4 violet 5 violet 7 violet
-1 player deck cards:
-*/
