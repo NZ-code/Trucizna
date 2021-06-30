@@ -1,0 +1,2 @@
+active player = 1
+explosion threshold = 20
